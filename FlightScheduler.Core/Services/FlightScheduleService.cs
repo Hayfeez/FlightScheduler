@@ -56,5 +56,23 @@ namespace FlightScheduler.Core.Services
             };
         }
 
+        public void AttachOrdersToFlights(List<Order> orders)
+        {
+            var flights = LoadFlightSchedules();
+            foreach (var order in orders)
+            {
+                var flight = flights.FirstOrDefault(x => x.ArrivalAirport.ShortCode == order.Destination && x.Orders.Count < x.Airplane.Capacity);
+                if (flight != null)
+                {
+                    flight.Orders.Add(order);
+                    Console.WriteLine($"order: {order.OrderNo}, flightNumber: {flight.Number}, departure: {flight.DepartureAirport.ShortCode}, arrival: {flight.ArrivalAirport.ShortCode}, day: {flight.Day}");
+                }
+                else
+                {
+                    Console.WriteLine($"order: {order.OrderNo}, flightNumber: not scheduled");
+                }
+            }
+        }
+
     }
 }

@@ -11,4 +11,10 @@
     <ProjectReference Include="..\FlightScheduler.Core\FlightScheduler.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="StaticFiles\coding-assigment-orders.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
